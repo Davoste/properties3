@@ -28,16 +28,20 @@ SECRET_KEY = 'django-insecure-f64-7f6_=^q4#!f!fpvc7r)p_*yz98iki&mg1$u6)fq0rxaghf
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'properties3.onrender.com','127.0.0.1', '23de-41-90-178-17.ngrok-free.app'
+    'properties3.onrender.com',
+    '127.0.0.1', 
+    '23de-41-90-178-17.ngrok-free.app'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://23de-41-90-178-17.ngrok-free.app', 
     "https://properties3.onrender.com",
+    'https://23de-41-90-178-17.ngrok-free.app', 
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500", "https://23de-41-90-178-17.ngrok-free.app","https://properties3.onrender.com"
+    "https://properties3.onrender.com",
+    "http://127.0.0.1:5500", 
+    "https://23de-41-90-178-17.ngrok-free.app"
 ]
 
 
