@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://23de-41-90-178-17.ngrok-free.app', 
+    "https://properties3.onrender.com",
 ]
 
 CORS_ALLOWED_ORIGINS = [
