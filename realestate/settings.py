@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-f64-7f6_=^q4#!f!fpvc7r)p_*yz98iki&mg1$u6)fq0rxaghf
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1', '23de-41-90-178-17.ngrok-free.app'
+    'properties3.onrender.com','127.0.0.1', '23de-41-90-178-17.ngrok-free.app'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
