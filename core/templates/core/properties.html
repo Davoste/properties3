@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %} Properties {% endblock %}
+
+{% block additional_css %} <link rel="stylesheet" href="{% static 'core/css/home.css' %}">{% endblock %}
+
+
+{% block content %}
+
+<section class="properties-section">
+  <div class="properties-container">
+
+    
+    {% if properties %}
+    <div class="swiper-slide">
+      {% for property in properties %}
+      <a href="{% url 'core:property_detail' property.id %}" class="property-card-link">
+        <div class="property-card" style="background-image: url('{{ property.featured_image.image.url }}');">
+          <div class="price-badge">{{ property.price }} {{ property.currency }}</div>
+          <div class="property-meta">
+            <span class="country">{{ property.city.country.name }}</span>
+            <span class="city">{{ property.city.name }}</span>
+          </div>
+          <div class="house-details">
+            <h3 class="house-name">{{ property.title }}</h3>
+            <ul class="property-features">
+              <li><i class="fa-solid fa-border-all"></i> {{ property.sqft }} sqft</li>
+              <li><i class="fa-solid fa-bed"></i> {{ property.bedrooms }} bedrooms</li>
+              <li><i class="fa-solid fa-bath"></i> {{ property.bathrooms }} bathrooms</li>
+            </ul>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No properties available.</p>
+    {% endif %}
+    
+
+  </div>
+</section>
+
+  {% include "partials/property_filter_form.html" %}
+
+{% endblock %}
+
+{% block additional_js %}<script src="{% static 'core/js/properties.js' %}"></script>{% endblock %}

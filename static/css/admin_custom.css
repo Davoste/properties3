@@ -1,0 +1,5 @@
+/* Align all cells vertically */
+#result_list td {
+    vertical-align: middle !important;
+    padding: 12px 8px !important;
+}

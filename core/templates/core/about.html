@@ -1,0 +1,78 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %} About Us {% endblock %}
+
+{% block additional_css %} <link rel="stylesheet" href="{% static 'core/css/about.css' %}">{% endblock %}
+
+{% block content %}
+
+   <!-- Hero Section -->
+         <section class="breadcrumb-section">
+          <div class="breadcrumb-container">
+            <div class="breadcrumb-wrapper">
+              <div class="breadcrumb-links">
+                <a href="{% url 'core:home' %}" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-divider">/</span>
+                <span class="breadcrumb-current">About Us</span>
+              </div>
+              <div class="breadcrumb-title-wrap">
+                <h1 class="breadcrumb-title">About Seven Flags</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="our-story">
+            <p>
+                SevenFlags World is a visionary real estate platform dedicated to transforming how people across Africa discover and connect with property. Focused on making the real estate journey seamless and empowering, SevenFlags offers trusted services, innovative tools, and expert guidance tailored to the diverse needs of home buyers, renters, and investors. From finding the perfect home to securing a profitable investment, our platform is designed to support every step of the user’s journey with professionalism, integrity, and ease.
+            </p>
+            <p>
+                We're more than just a listings site, SevenFlags World is building a vibrant digital ecosystem where property meets possibility. By embracing technology and a mission-driven approach, our platform aims to shape the future of real estate in Africa, making it more accessible, transparent, and community-centered. With a clear vision of connecting people to spaces that inspire growth, comfort, and belonging, SevenFlags is redefining what it means to find home on the continent.
+            </p>
+        </section>
+
+        <section class="vision-mission">
+      <div class="vision">
+        <h2>Our Vision</h2>
+        <p>
+          At Seven Flags, our vision is to foster a future where everyone finds their perfect home, families create lasting memories, and communities thrive. We aim to redefine the real estate experience through integrity, innovation, and a relentless commitment to excellence—ensuring every step of your journey feels seamless, personal, and empowering.
+        </p>
+        <img src="{% static 'images/Crystal Oak.jpeg' %}" alt="Vision" class="vision-image" />
+      </div>
+
+      <div class="mission">
+        <img src="{% static 'images/Grosvenor.jpeg' %}" alt="Mission" class="mission-image" />
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to connect home buyers, renters, and investors with the right properties through trusted service, advanced digital tools, and expert guidance. We strive to simplify real estate, build lasting relationships, and create value in every transaction.
+        </p>
+      </div>
+    </section>
+
+      <section class="core-values">
+  <h2>Core Values</h2>
+  <div class="values-list">
+    <div class="value-item">
+      <i class="fas fa-shield-alt icon"></i>
+      <h3>Integrity</h3>
+    </div>
+    <div class="value-item">
+      <i class="fas fa-lightbulb icon"></i>
+      <h3>Innovation</h3>
+    </div>
+    <div class="value-item">
+      <i class="fas fa-award icon"></i>
+      <h3>Excellence</h3>
+    </div>
+    <div class="value-item">
+      <i class="fas fa-handshake icon"></i>
+      <h3>Customer Commitment</h3>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block additional_js %}<script src="{% static 'core/js/about.js' %}"></script>{% endblock %}

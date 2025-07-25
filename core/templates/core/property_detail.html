@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <title>{{ property.title }} | SevenFlags Real Estate</title>
+</head>
+
+<body> 
+  <!-- Header Section -->
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="header-container">
+          <div class="website-logo">
+            <img class="logo-monogram" src="{% static 'icons/Rent Home Section.svg' %}" alt="Seven Flags" />
+            <div class="brand-name">SevenFlags</div>
+          </div>
+    
+          <button class="hamburger" onclick="toggleMenu()">☰</button>
+          
+          <nav class="navbar" id="navbar">
+            <a href="{% url 'core:home' %}">Home</a>
+            <a href="{% url 'core:properties' %}">Properties</a>
+            <a href="{% url 'core:invest' %}">Invest</a>
+            <a href="{% url 'core:blog' %}">Blog</a>
+            <a href="{% url 'core:about' %}">Overview</a>
+            <a href="{% url 'core:contact' %}">Contact</a>
+          </nav>
+        </div>
+      </header>
+    
+      
+    
+    
+  <main>
+    <section class="breadcrumb-section">
+      <div class="breadcrumb-container">
+        <div class="breadcrumb-wrapper">
+          <div class="breadcrumb-links">
+            <a href="{% url 'core:home' %}" class="breadcrumb-link">Home</a>
+            <span class="breadcrumb-divider">/</span>
+            <a href="{% url 'core:properties' %}" class="breadcrumb-link">Properties</a>
+            <span class="breadcrumb-divider">/</span>
+            <span class="breadcrumb-current">{{ property.title }}</span>
+          </div>
+          <div class="breadcrumb-title-wrap">
+            <h1 class="breadcrumb-title">{{ property.title }}</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+      {% if property.images.all %}
+        <img src="{{ property.featured_image.image.url }}" alt="Background" class="background-image" />
+        <div class="carousel-container">
+          <button class="scroll-btn left" onclick="scrollThumbnails(-1)">&#8592;</button>
+          <div class="thumbnails" id="thumbnails">
+            {% for image in property.images.all %}
+              <img src="{{ image.image.url }}" alt="Property Photo {{ forloop.counter }}" />
+            {% endfor %}
+          </div>
+          <button class="scroll-btn right" onclick="scrollThumbnails(1)">&#8594;</button>
+        </div>
+      {% else %}
+        <p>No images available for this property.</p>
+      {% endif %}
+    </section>
+
+    <section class="property-description-section">
+      <div class="property-container">
+
+        <!-- Description -->
+        <div class="description-box">
+          <h2>Description</h2>
+          <p>{{ property.description|linebreaks }}</p>
+        </div>
+
+        <hr />
+
+        <!-- Address -->
+        <div class="address-box">
+          <h2>Address</h2>
+          <ul class="address-details">
+            <li><strong>Name</strong>: {{ property.title }}</li>
+            <li><strong>City</strong>: {{ property.city.name }}</li>
+            <li><strong>Area</strong>: {{ property.area }}</li>
+            <li><strong>Country</strong>: {{ property.city.country.name }}</li>
+            <li><strong>Address</strong>: {{ property.address }}</li>
+          </ul>
+        </div>
+
+        <hr />
+
+        <!-- Details -->
+        <div class="details-box">
+          <h2>Details</h2>
+          <ul class="details">
+            <li><strong>Price</strong>: {{ property.currency }} {{ property.price|floatformat:0 }}</li>
+            <li><strong>Size</strong>: {{ property.sqft }} sqft</li>
+            <li><strong>Bedrooms</strong>: {{ property.bedrooms }}</li>
+            <li><strong>Bathrooms</strong>: {{ property.bathrooms }}</li>
+            <li><strong>Balcony</strong>: {% if property.has_balcony %}Yes{% else %}No{% endif %}</li>
+            <li><strong>Room Floor</strong>: {{ property.floor }}</li>
+          </ul>
+        </div>
+
+        <hr />
+
+        <!-- Amenities -->
+        <div class="amenities-box">
+          <h2>Amenities</h2>
+          {% if property.amenities.all %}
+            <ul class="amenities-details">
+              {% for amenity in property.amenities.all %}
+                <li>{{ amenity.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>No amenities listed for this property.</p>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <!-- Video Tour -->
+      {% if property.video_url %}
+        <div class="video-box">
+          <h2>Property Tour</h2>
+          <div class="video-wrapper">
+            <iframe 
+              src="{{ property.video_url }}" 
+              title="Property Video Tour" 
+              frameborder="0" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <!-- Footer -->
+  {% include 'partials/footer.html' %}
+
+  <script>
+    const thumbnails = document.getElementById("thumbnails");
+    const images = thumbnails ? thumbnails.getElementsByTagName("img") : [];
+    const bgImage = document.querySelector(".background-image");
+    let currentCenterIndex = 0;
+
+    function updateCarousel() {
+      if (images.length === 0) return;
+      for (let i = 0; i < images.length; i++) {
+        images[i].classList.remove("active");
+        images[i].style.display = "none";
+      }
+
+      let indices = [
+        (currentCenterIndex - 1 + images.length) % images.length,
+        currentCenterIndex,
+        (currentCenterIndex + 1) % images.length
+      ];
+
+      indices.forEach((i, idx) => {
+        images[i].style.display = "block";
+        if (idx === 1) {
+          images[i].classList.add("active");
+          bgImage.src = images[i].src; // Update background to active
+        }
+      });
+    }
+
+    function scrollThumbnails(direction) {
+      if (images.length === 0) return;
+      currentCenterIndex += direction;
+      if (currentCenterIndex < 0) currentCenterIndex = images.length - 1;
+      if (currentCenterIndex >= images.length) currentCenterIndex = 0;
+      updateCarousel();
+    }
+
+    if (images.length > 0) {
+      for (let i = 0; i < images.length; i++) {
+        images[i].addEventListener("click", () => {
+          currentCenterIndex = i;
+          updateCarousel();
+        });
+      }
+      updateCarousel();
+    }
+
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

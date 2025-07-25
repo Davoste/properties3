@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Seven Flags</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'js/script.js' %}" defer></script>
+
+</head>
+<body>
+    
+  <!-- Header Section -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="website-logo">
+        <img class="logo-monogram" src="{% static 'icons/Rent Home Section.svg' %}" alt="Seven Flags" />
+        <div class="brand-name">SevenFlags</div>
+      </div>
+
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      
+      <nav class="navbar" id="navbar">
+        <a href="{% url 'core:home' %}">Home</a>
+        <a href="{% url 'core:properties' %}">Properties</a>
+        <a href="{% url 'core:invest' %}">Invest</a>
+        <a href="{% url 'core:blog' %}">Blog</a>
+        <a href="{% url 'core:about' %}">Overview</a>
+        <a href="{% url 'core:contact' %}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+    <main>
+        <!-- Hero Section -->
+         <section class="breadcrumb-section">
+          <div class="breadcrumb-container">
+            <div class="breadcrumb-wrapper">
+              <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-divider">/</span>
+                <span class="breadcrumb-current">About Us</span>
+              </div>
+              <div class="breadcrumb-title-wrap">
+                <h1 class="breadcrumb-title">About Seven Flags</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="our-story">
+            <p>
+                Seven Flags Real Estate is a Pan-African property investment company operating across Kenya, Uganda, Tanzania, South Africa, and Ghana. According to their Instagram profile, they provide a safe and lucrative path to invest in Africa.
+            </p>
+            <p>
+                Their mission is to bridge the gap between global investors and Africa’s dynamic real estate markets, offering opportunities in residential, commercial, and mixed-use developments. By leveraging local expertise and a deep understanding of regional markets, Seven Flags aims to deliver sustainable and profitable investment solutions across the continent.
+            </p>
+        </section>
+
+        <section class="vision-mission">
+      <div class="vision">
+        <h2>Our Vision</h2>
+        <p>
+          At Seven Flags, our vision is to foster a future where everyone finds their perfect home, families create lasting memories, and communities thrive. We aim to redefine the real estate experience through integrity, innovation, and a relentless commitment to excellence—ensuring every step of your journey feels seamless, personal, and empowering.
+        </p>
+        <img src="Images/zac-cain-4ETshgrhbJw-unsplash.jpg" alt="Vision" class="vision-image" />
+      </div>
+
+      <div class="mission">
+        <img src="Images/john-fornander-Id7u0EkTjBE-unsplash.jpg" alt="Mission" class="mission-image" />
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to connect home buyers, renters, and investors with the right properties through trusted service, advanced digital tools, and expert guidance. We strive to simplify real estate, build lasting relationships, and create value in every transaction.
+        </p>
+      </div>
+    </section>
+
+      <section class="core-values">
+  <h2>Core Values</h2>
+  <div class="values-list">
+    <div class="value-item">
+      <i class="fas fa-shield-alt icon"></i>
+      <h3>Integrity</h3>
+    </div>
+    <div class="value-item">
+      <i class="fas fa-lightbulb icon"></i>
+      <h3>Innovation</h3>
+    </div>
+    <div class="value-item">
+      <i class="fas fa-award icon"></i>
+      <h3>Excellence</h3>
+    </div>
+    <div class="value-item">
+      <i class="fas fa-handshake icon"></i>
+      <h3>Customer Commitment</h3>
+    </div>
+  </div>
+</section>
+
+    </main>
+
+  <!-- Footer Section -->
+  <footer class="custom-footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <div class="footer-logo">
+          <i class="fa-solid fa-house-chimney"></i>
+          <span>SevenFlags</span>
+        </div>
+        <p>Embark on a journey of discovery with Seven Flags’ commitment to excellence.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="#">Listing</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Our Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><i class="fas fa-phone-alt"></i> +91 600 500 611</li>
+          <li><i class="fas fa-envelope"></i> hello@sevenflags.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> 1234, Nairobi, Kenya</li>
+        </ul>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h4>Newsletter</h4>
+        {% if messages %}
+          <div class="messages">
+            {% for message in messages %}
+              <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <form method="POST" action="{% url 'core:subscribe_newsletter' %}">
+          {% csrf_token %}
+          <input type="email" placeholder="Your Email" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <p>&copy; 2025 Seven Flags. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Get current page filename 
+const currentPage = window.location.pathname.split("/").pop();
+
+// Get all navbar links
+const navLinks = document.querySelectorAll(".navbar a");
+
+navLinks.forEach(link => {
+    // Get href from each link
+    const linkPage = link.getAttribute("href");
+
+    // Match filename and apply "active" class
+    if (linkPage === currentPage) {
+    link.classList.add("active");
+    }
+});
+
+  function toggleMenu() {
+    document.getElementById("navbar").classList.toggle("active");
+  }
+
+
+  </script>
+
+</body>
+</html>

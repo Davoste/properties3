@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
+        .header { background-color: #000000; padding: 20px; text-align: center; }
+        .logo { height: 50px; }
+        .content { padding: 20px; }
+        .response { background: #f8f8f8; border-left: 4px solid #B8860B; padding: 15px; margin: 20px 0; }
+        .footer { color: #777; font-size: 12px; text-align: center; padding: 15px; }
+        a { color: #B8860B; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ logo_url }}" alt="Seven Flags Logo" class="logo">
+    </div>
+    
+    <div class="content">
+        <p>Dear {{ client_name }},</p>
+        
+        <p>Thank you for your inquiry about <strong>{{ property_title }}</strong>.</p>
+        
+        <div class="response">
+            <h3 style="margin-top: 0; color: #B8860B;">Our Response:</h3>
+            {{ response|linebreaks }}
+        </div>
+        
+        <p>For any follow-up questions, please reply to this email.</p>
+        
+        <p>Best regards,<br>
+        <strong>{{ company_name }}</strong></p>
+    </div>
+    
+    <div class="footer">
+        <p>{{ company_name }} &copy; {% now "Y" %}</p>
+        <p><a href="https://sevenflags.com" style="color: #777;">Visit our website</a></p>
+    </div>
+</body>
+</html>

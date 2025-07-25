@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+        <title>Blog - SevenFlags</title>
+    </head>
+    <body>
+      <!-- Header Section -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="website-logo">
+        <img class="logo-monogram" src="{% static 'icons/Rent Home Section.svg' %}" />
+        <div class="brand-name">SevenFlags</div>
+      </div>
+
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      
+      <nav class="navbar" id="navbar">
+        <a href="{% url 'core:home' %}">Home</a>
+        <a href="{% url 'core:properties' %}">Properties</a>
+        <a href="{% url 'core:invest' %}">Invest</a>
+        <a href="{% url 'core:blog' %}">Blog</a>
+        <a href="{% url 'core:about' %}">Overview</a>
+        <a href="{% url 'core:contact' %}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+        <main class="main-content">
+          <section class="breadcrumb-section">
+          <div class="breadcrumb-container">
+            <div class="breadcrumb-wrapper">
+              <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-divider">/</span>
+                <span class="breadcrumb-current">Blog</span>
+              </div>
+              <div class="breadcrumb-title-wrap">
+                <h1 class="breadcrumb-title">Blog</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="market-insights">
+          <div class="insight-cards">
+            {% if blogs %}
+              {% for blog in blogs %}
+              <article class="insight-card">
+                <div class="insight-image">
+                  {% if blog.featured_image %}
+                    <img src="{{ blog.featured_image.url }}" alt="{{ blog.title }}">
+                  {% else %}
+                    <img src="{% static 'images/default-blog.jpg' %}" alt="Default Image">
+                  {% endif %}
+                </div>
+                <div class="insight-content">
+                  <p class="insight-date">{{ blog.date_published|date:"F j, Y" }}</p>
+                  <h3 class="insight-title">{{ blog.title }}</h3>
+                  <p class="insight-description">{{ blog.summary }}</p>
+                  <a href="{% url 'core:blog_detail' blog.slug %}" class="read-more">Continue Reading</a>
+                </div>
+              </article>
+              {% endfor %}
+            {% else %}
+              <p>No blog posts available at the moment. Please check back later.</p>
+            {% endif %}
+          </div>
+        </section>
+        
+        </main>
+
+  <!-- Footer Section -->
+  <footer class="custom-footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <div class="footer-logo">
+          <i class="fa-solid fa-house-chimney"></i>
+          <span>SevenFlags</span>
+        </div>
+        <p>Embark on a journey of discovery with Seven Flags’ commitment to excellence.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="#">Listing</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Our Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><i class="fas fa-phone-alt"></i> +91 600 500 600</li>
+          <li><i class="fas fa-envelope"></i> hello@sevenflags.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> 1234, Nairobi, Kenya</li>
+        </ul>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h4>Newsletter</h4>
+        <form>
+          <input type="email" placeholder="Your Email" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <p>&copy; 2025 Seven Flags. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+        // Get current page filename 
+const currentPage = window.location.pathname.split("/").pop();
+
+// Get all navbar links
+const navLinks = document.querySelectorAll(".navbar a");
+
+navLinks.forEach(link => {
+    // Get href from each link
+    const linkPage = link.getAttribute("href");
+
+    // Match filename and apply "active" class
+    if (linkPage === currentPage) {
+    link.classList.add("active");
+    }
+});
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
+

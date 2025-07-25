@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    .unresponded-badge {
+        display: inline-block;
+        background: #ff4d4d;
+        color: white;
+        border-radius: 10px;
+        padding: 0 6px;
+        font-size: 12px;
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+{% endblock %}

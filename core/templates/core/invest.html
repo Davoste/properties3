@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest with Seven Flags</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="website-logo">
+        <img class="logo-monogram" src="{% static 'icons/Rent Home Section.svg' %}" alt="Seven Flags" />
+        <div class="brand-name">SevenFlags</div>
+      </div>
+
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      
+      <nav class="navbar" id="navbar">
+        <a href="{% url 'core:home' %}">Home</a>
+        <a href="{% url 'core:properties' %}">Properties</a>
+        <a href="{% url 'core:invest' %}">Invest</a>
+        <a href="{% url 'core:blog' %}">Blog</a>
+        <a href="{% url 'core:about' %}">Overview</a>
+        <a href="{% url 'core:contact' %}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+    <main>
+          <section class="breadcrumb-section">
+          <div class="breadcrumb-container">
+            <div class="breadcrumb-wrapper">
+              <div class="breadcrumb-links">
+                <a href="index.html" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-divider">/</span>
+                <span class="breadcrumb-current">Invest</span>
+              </div>
+              <div class="breadcrumb-title-wrap">
+                <h1 class="breadcrumb-title">Invest</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="benefits">
+            <h2 class="benefits-title">Why Invest With Seven Flags</h2>
+            <div class="benefits-list">
+                <article class="benefit">
+                    <img src="https://c.animaapp.com/majl9clis83MaM/img/layers.svg" alt="Diversified Portfolio Icon" class="benefit-icon">
+                    <h3 class="benefit-title">Diversified Portfolio</h3>
+                    <p class="benefit-description">Invest in diverse property sections across five countries.</p>
+                </article>
+                <article class="benefit">
+                    <img src="https://c.animaapp.com/majl9clis83MaM/img/trending-up.svg" alt="High ROI Icon" class="benefit-icon">
+                    <h3 class="benefit-title">High ROI</h3>
+                    <p class="benefit-description">Delivering strong returns through strategic investments.</p>
+                </article>
+                <article class="benefit">
+                    <img src="https://c.animaapp.com/majl9clis83MaM/img/user-check.svg" alt="Trusted Partnership Icon" class="benefit-icon">
+                    <h3 class="benefit-title">Trusted Partnership</h3>
+                    <p class="benefit-description">Collaborate with reputed developers and industry experts.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="featured-investments">
+            <h2 class="section-title">Featured Investment Properties</h2>
+            <div class="investments-list">
+                <article class="investment">
+                    <img src="https://c.animaapp.com/majl9clis83MaM/img/heroicons-home.svg" alt="Buy-to-Let Properties Icon" class="invest-icon">
+                    <h3 class="investment-title">Buy-to-Let Properties</h3>
+                    <p class="investment-description">Generate rental income from residential properties.</p>
+                </article>
+                <article class="investment">
+                    <img src="https://c.animaapp.com/majl9clis83MaM/img/lucide-blocks.svg" alt="Off-Plan Developments Icon" class="invest-icon">
+                    <h3 class="investment-title">Off-Plan Developments</h3>
+                    <p class="investment-description">Invest in properties at the pre-construction stage.</p>
+                </article>
+                <article class="investment">
+                    <img src="https://c.animaapp.com/majl9clis83MaM/img/ph-building-apartment-light.svg" alt="Commercial Real Estate Icon" class="invest-icon">
+                    <h3 class="investment-title">Commercial Real Estate</h3>
+                    <p class="investment-description">Opportunities in retail, office, and industrial properties.</p>
+                </article>
+            </div>
+        </section>
+        
+        <section class="market-insights">
+            <h2 class="section-title">Market Insights</h2>
+            <div class="insight-cards">
+                <article class="insight-card">
+                <div class="insight-image"></div>
+                <div class="insight-content">
+                    <p class="insight-date">May 1, 2025</p>
+                    <h3 class="insight-title">Top 10 Best Appreciating Apartments in Kenya</h3>
+                    <p class="insight-description">Simple way to pick the best looking apartment with ease around Nairobi.</p>
+                    <a href="#" class="read-more">Continue Reading</a>
+                </div>
+                </article>
+
+                <article class="insight-card">
+                <div class="insight-image"></div>
+                <div class="insight-content">
+                    <p class="insight-date">May 10, 2025</p>
+                    <h3 class="insight-title">Top Real Estate Trends in Africa</h3>
+                    <p class="insight-description">Simple way to pick the best looking apartment with ease around Nairobi.</p>
+                    <a href="#" class="read-more">Continue Reading</a>
+                </div>
+                </article>
+
+                <article class="insight-card">
+                <div class="insight-image"></div>
+                <div class="insight-content">
+                    <p class="insight-date">May 15, 2025</p>
+                    <h3 class="insight-title">Where in Africa to Invest in 2025</h3>
+                    <p class="insight-description">Simple way to pick the best looking apartment with ease around Nairobi.</p>
+                    <a href="#" class="read-more">Continue Reading</a>
+                </div>
+                </article>
+            </div>
+        </section>
+
+
+        <section class="viewing-form-section">
+            <div class="form-container">
+            <h2 class="form-header">Investor Inquiry Form</h2>
+            <form class="viewing-form" action="#" method="POST">
+                <div class="form-row two-columns">
+                    <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required />
+                    </div>
+                    <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                    </div>
+                </div>
+                <div class="form-row two-columns">
+                    <div class="form-group">
+                    <label for="budget">Investment Budget</label>
+                    <input type="text" id="budget" name="budget" placeholder="Enter your budget" required />
+                    </div>
+                    <div class="form-group">
+                    <label for="location">Location of Interest</label>
+                    <input type="text" id="location" name="location" placeholder="Enter your preferred location" required />
+                    </div>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+            </div>
+        </section>
+    </main>
+
+  <!-- Footer Section -->
+  <footer class="custom-footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <div class="footer-logo">
+          <i class="fa-solid fa-house-chimney"></i>
+          <span>SevenFlags</span>
+        </div>
+        <p>Embark on a journey of discovery with Seven Flags’ commitment to excellence.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="#">Listing</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Our Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><i class="fas fa-phone-alt"></i> +91 600 500 600</li>
+          <li><i class="fas fa-envelope"></i> hello@sevenflags.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> 1234, Nairobi, Kenya</li>
+        </ul>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h4>Newsletter</h4>
+        <form>
+          <input type="email" placeholder="Your Email" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <p>&copy; 2025 Seven Flags. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+
+            // Get current page filename 
+const currentPage = window.location.pathname.split("/").pop();
+
+// Get all navbar links
+const navLinks = document.querySelectorAll(".navbar a");
+
+navLinks.forEach(link => {
+    // Get href from each link
+    const linkPage = link.getAttribute("href");
+
+    // Match filename and apply "active" class
+    if (linkPage === currentPage) {
+    link.classList.add("active");
+    }
+});
+  function toggleMenu() {
+    document.getElementById("navbar").classList.toggle("active");
+  }
+</script>
+</body>
+</html>
+

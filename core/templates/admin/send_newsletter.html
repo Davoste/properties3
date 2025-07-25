@@ -1,0 +1,22 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+  <h1>Send Newsletter</h1>
+  <form method="post">{% csrf_token %}
+    <!-- <p>Sending to {{ subscribers|length }} subscribers:</p> -->
+    <ul>
+      {% for subscriber in subscribers %}
+        <li>{{ subscriber.email }}</li>
+      {% endfor %}
+    </ul>
+
+    <div>
+      <label for="subject">Subject:</label><br>
+      <input type="text" name="subject" id="subject" required>
+    </div>
+    <div>
+      <label for="message">Message:</label><br>
+      <textarea name="message" id="message" rows="5" required></textarea>
+    </div>
+    <button type="submit">Send Newsletter</button>
+  </form>
+{% endblock %}

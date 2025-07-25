@@ -1,0 +1,61 @@
+<!-- Footer Section -->
+{% load static %}
+  <footer class="custom-footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <div class="footer-logo">
+          <a href="{% url 'core:home' %}">
+            <img src="{% static '/images/Icons/Seven Flags Logo 1.svg' %}" alt="SevenFlags Logo" class="logo-image">
+        </a>
+        </div>
+        <p>Embark on a journey of discovery with Seven Flags’ commitment to excellence.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="{% url 'core:properties' %}">Listing</a></li>
+          <li><a href="{% url 'core:about' %}">About Us</a></li>
+          <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
+          <li><a href="#">Our Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><i class="fas fa-phone-alt"></i> +254 117 063 779‬
+</li>
+          <li><i class="fas fa-envelope"></i> Invest@SevenFlags.World
+</li>
+          <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+        </ul>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h4>Newsletter</h4>
+        {% if messages %}
+          <div class="messages">
+            {% for message in messages %}
+              <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <form method="POST" action="{% url 'core:subscribe_newsletter' %}">
+          {% csrf_token %}
+          <input type="email" name="email" placeholder="Your Email" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <a href="https://www.instagram.com/sevenflags_world?igsh=MXV1ZHVidjdhOTcyMQ==" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/share/1AvUQxAAxu/?mibextid=wwXIfr" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.threads.com/@sevenflags_world?igshid=NTc4MTIwNjQ2YQ==" title="Threads"><i class="fa-brands fa-threads"></i></a>
+        <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p>&copy; 2025 Seven Flags. All rights reserved.</p>
+    </div>
+  </footer>

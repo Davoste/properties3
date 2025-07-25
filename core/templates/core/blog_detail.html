@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <title>{{ blog.title }} - SevenFlags</title>
+  <style>
+    .blog-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .blog-featured-image img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .blog-meta {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .blog-content {
+      line-height: 1.7;
+      font-size: 1.05rem;
+      color: #333;
+    }
+    .blog-content h2, .blog-content h3, .blog-content h4 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      color: #1a202c;
+    }
+    .blog-content p {
+      margin-bottom: 1.2em;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-left: 1.5em;
+      margin-bottom: 1.2em;
+    }
+    .blog-content blockquote {
+      border-left: 4px solid #0077cc;
+      padding-left: 1em;
+      color: #555;
+      font-style: italic;
+      margin: 1.5em 0;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+    .blog-tags {
+      margin-top: 30px;
+    }
+    .blog-tags strong {
+      margin-right: 10px;
+      color: #555;
+    }
+    .blog-tags .tag {
+      background: #f0f0f0;
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+    .back-to-blog {
+      margin-top: 40px;
+    }
+    .back-to-blog a {
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .back-to-blog a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="website-logo">
+        <img class="logo-monogram" src="{% static 'icons/Rent Home Section.svg' %}" />
+        <div class="brand-name">SevenFlags</div>
+      </div>
+
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      
+      <nav class="navbar" id="navbar">
+        <a href="{% url 'core:home' %}">Home</a>
+        <a href="{% url 'core:properties' %}">Properties</a>
+        <a href="{% url 'core:invest' %}">Invest</a>
+        <a href="{% url 'core:blog' %}">Blog</a>
+        <a href="{% url 'core:about' %}">Overview</a>
+        <a href="{% url 'core:contact' %}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="breadcrumb-section">
+      <div class="breadcrumb-container">
+        <div class="breadcrumb-wrapper">
+          <div class="breadcrumb-links">
+            <a href="{% url 'core:home' %}" class="breadcrumb-link">Home</a>
+            <span class="breadcrumb-divider">/</span>
+            <a href="{% url 'core:blog' %}" class="breadcrumb-link">Blog</a>
+            <span class="breadcrumb-divider">/</span>
+            <span class="breadcrumb-current">{{ blog.title }}</span>
+          </div>
+          <div class="breadcrumb-title-wrap">
+            <h1 class="breadcrumb-title">{{ blog.title }}</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-detail-section">
+      <div class="blog-container">
+
+        {% if blog.featured_image %}
+          <div class="blog-featured-image">
+            <img src="{{ blog.featured_image.url }}" alt="{{ blog.title }}">
+          </div>
+        {% endif %}
+
+        <div class="blog-meta">
+          <p class="blog-date"><i class="fa-regular fa-calendar"></i> {{ blog.date_published|date:"F j, Y" }}</p>
+        </div>
+
+        <div class="blog-content">
+          {{ blog.content|safe }}
+        </div>
+
+        <!-- Optional Tags -->
+        {% if blog.tags.exists %}
+        <div class="blog-tags">
+          <strong>Tags:</strong>
+          {% for tag in blog.tags.all %}
+            <span class="tag">{{ tag.name }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Back to Blog link -->
+        <div class="back-to-blog">
+          <a href="{% url 'core:blog' %}"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  {% include 'partials/footer.html' %}
+
+  <script>
+    // Highlight active nav link
+    const currentPage = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll(".navbar a");
+    navLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+      }
+    });
+
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

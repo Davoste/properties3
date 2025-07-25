@@ -1,0 +1,274 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block additional_css %} <link rel="stylesheet" href="{% static 'core/css/home.css' %}">{% endblock %}
+
+{% block content %}
+
+  <section class="hero-details">
+    <h1 class="hero-tagline">Home Is Where Your Story Begins.</h1>
+    <p class="hero-description">
+    <span>Unlock your dream home, explore endless possibilities with </span>
+    <span class="highlight">SevenFlags</span> — your premier real estate destination.
+    </p>
+  </section>
+
+  <section class="services-section">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-house-user"></i></div>
+        <div class="service-content">
+          <h3>Buy / Rent Property</h3>
+          <p>Find the perfect home or property to rent or purchase in key locations across the region.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-couch"></i></div>
+        <div class="service-content">
+          <h3>Furnishing for AirBnB</h3>
+          <p>We fully furnish your property to meet AirBnB standards, making it guest-ready and profitable.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-tools"></i></div>
+        <div class="service-content">
+          <h3>Property Management</h3>
+          <p>Let us handle your property’s day-to-day operations, maintenance, and tenant management efficiently.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="service-content">
+          <h3>Investment Opportunities</h3>
+          <p>Earn up to 30% returns on real estate investments through our secure and transparent platforms.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Featured Listings Section -->
+<section class="featured-listings">
+  <h2>Featured Listings</h2>
+
+  <div class="swiper featuredSwiper">
+    <div class="swiper-wrapper">
+      {% if properties %}
+  
+      {% for property in properties %}
+      <div class="swiper-slide">
+      <a href="{% url 'core:property_detail' property.id %}" class="property-card-link">
+        <div class="property-card" style="background-image: url('{{ property.featured_image.image.url }}');">
+          <div class="price-badge">{{ property.price }} {{ property.currency }}</div>
+          <div class="property-meta">
+            <span class="country">{{ property.city.country.name }}</span>
+            <span class="city">{{ property.city.name }}</span>
+          </div>
+          <div class="house-details">
+            <h3 class="house-name">{{ property.title }}</h3>
+            <ul class="property-features">
+              <li><i class="fa-solid fa-border-all"></i> {{ property.sqft }} sqft</li>
+              <li><i class="fa-solid fa-bed"></i> {{ property.bedrooms }} bedrooms</li>
+              <li><i class="fa-solid fa-bath"></i> {{ property.bathrooms }} bathrooms</li>
+            </ul>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No properties available.</p>
+    {% endif %}
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <div class="view-all-button">
+    <a href="{% url 'core:properties' %}">All Properties</a>
+  </div>
+</section>
+
+
+  <!-- Mission & Vision Section -->
+  <section class="vision-mission">
+    <div class="vision">
+      <h2>Our Vision</h2>
+      <p>
+      At Seven Flags, our vision is to foster a future where everyone finds their perfect home, families create lasting memories, and communities thrive. We aim to redefine the real estate experience through integrity, innovation, and a relentless commitment to excellence—ensuring every step of your journey feels seamless, personal, and empowering.
+      </p>
+      <img src="{% static 'images/Crystal Oak.jpeg' %}" alt="Vision" class="vision-image" />
+    </div>
+
+    <div class="mission">
+      <img src="{% static 'images/Grosvenor.jpeg' %}" alt="Mission" class="mission-image" />
+      <h2>Our Mission</h2>
+      <p>
+      Our mission is to connect home buyers, renters, and investors with the right properties through trusted service, advanced digital tools, and expert guidance. We strive to simplify real estate, build lasting relationships, and create value in every transaction.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Real Estate Experience -->
+  <section class="real-estate-experience">
+    <div class="section-header">
+      <h2>Your Complete Real Estate Experience</h2>
+      <p>Unlocking opportunities and simplifying your real estate journey with Seven Flags.</p>
+    </div>
+
+    <div class="card-container">
+      <!-- Buy a Home -->
+      <div class="card">
+        <img src="{% static 'images/Icons/Sell Home Icon.svg' %}" alt="Buy a Home Icon" class="card-icon" />
+        <div class="card-content">
+          <h3>Buy a Home</h3>
+          <p>Explore a wide range of homes tailored to your needs and budget. Find your perfect match today with us.</p>
+        </div>
+        <a href="{% url 'core:properties' %}" class="learn-more-btn">Learn More </a>
+      </div>
+
+      <!-- Rent a Home -->
+      <div class="card">
+          <img src="{% static 'images/Icons/Rent Home Section.svg' %}" alt="Rent a Home Icon" class="card-icon" />
+        <div class="card-content">
+          <h3>Rent a Home</h3>
+          <p>Discover affordable rentals in prime locations. Flexible terms and verified listings for peace of mind.</p>
+        </div>
+        <a href="{% url 'core:properties' %}" class="learn-more-btn">Learn More </a>
+      </div>
+
+      <!-- Invest in Property -->
+      <div class="card">
+          <img src="{% static 'images/Icons/Finance Home Icon.svg' %}" alt="Invest in Property Icon" class="card-icon" />
+        <div class="card-content">
+          <h3>Invest in Property</h3>
+          <p>Unlock high-return investment opportunities in growing markets. Start building your real estate portfolio.</p>
+        </div>
+        <a href="{% url 'core:invest' %}" class="learn-more-btn">Learn More </a>
+      </div>
+
+    </div>
+  </section>
+    
+  <section class="mortgage-calculator">
+    <div class="calculator-content">
+      <h2>Mortgage Calculator</h2>
+      <form id="calculator-form">
+        <div class="form-group">
+          <label for="homePrice">Home Price ($)</label>
+          <input type="number" id="homePrice" required />
+        </div>
+
+        <div class="form-group">
+          <label for="downPayment">Down Payment ($)</label>
+          <input type="number" id="downPayment" required />
+        </div>
+
+        <div class="form-group">
+          <label for="loanTerm">Loan Term (years)</label>
+          <input type="number" id="loanTerm" required />
+        </div>
+
+        <div class="form-group">
+          <label for="interestRate">Interest Rate (%)</label>
+          <input type="number" id="interestRate" step="0.01" required />
+        </div>
+
+        <button type="submit" class="calculate-button">Calculate</button>
+      </form>
+
+      <div class="result" id="monthlyPayment"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <h2>What Our Clients Say</h2>
+    <p class="subtitle">Real experiences from people who found their dream homes with SevenFlags.</p>
+
+    <div class="testimonial-container-wrapper">
+
+      <div class="testimonial-container" id="testimonialContainer">
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p>SevenFlags made the process so smooth! We found our perfect home in just a few clicks.</p>
+          <h4>— Jane Kim</h4>
+        </div>
+
+        <div class="testimonial-card staggered">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p>Their agents are top-notch, and the support was incredible throughout the journey.</p>
+          <h4>— Mark Spencer</h4>
+        </div>
+
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p>I highly recommend SevenFlags to anyone looking for trustworthy real estate services.</p>
+          <h4>— Sarah Wanjiru</h4>
+        </div>
+
+        <div class="testimonial-card staggered">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p>Great platform! It simplified our search and helped us settle into our new home quickly.</p>
+          <h4>— Alex M.</h4>
+        </div>
+
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p>Seven Flags made my first investment smooth and stress-free. Their team was transparent, supportive, and highly professional. I’m already seeing great results.</p>
+          <h4>— Alloyce N.</h4>
+        </div>
+
+        <div class="testimonial-card staggered">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p>I’ve worked with other agencies, but Seven Flags stands out. They’re reliable, honest, and truly client-focused.</p>
+          <h4>— Mike S.</h4>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="testimonial-controls">
+      <button class="arrow-btn" onclick="scrollTestimonials(-1)" title="Previous testimonial" aria-label="Previous testimonial">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="arrow-btn" onclick="scrollTestimonials(1)" title="Next testimonial" aria-label="Next testimonial">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+  </section>
+
+  <!-- Amenities Section -->
+  <section class="amenities-section">
+    <div class="amenities-container">
+      <div class="amenities-header">
+        <h2>Real Amenities</h2>
+        <p>Experience the perfect blend of comfort and convenience with real amenities designed to enhance your lifestyle and elevate your living experience.</p>
+      </div>
+      <div class="amenities-grid">
+        <div class="amenity-card"><div class="icon"><i class="fas fa-parking"></i></div><span>Car Parking</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-dumbbell"></i></div><span>Fitness Center</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-seedling"></i></div><span>Rooftop Garden</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-swimmer"></i></div><span>Indoor Pool</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-child"></i></div><span>Playground</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-shield-alt"></i></div><span>Private Security</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-wifi"></i></div><span>Free WiFi</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-video"></i></div><span>CCTV Coverage</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-paw"></i></div><span>Pet Friendly</span></div>
+        <div class="amenity-card"><div class="icon"><i class="fas fa-user-md"></i></div><span>Medical Service</span></div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block additional_js %}<script src="{% static 'core/js/home.js' %}"></script>{% endblock %}

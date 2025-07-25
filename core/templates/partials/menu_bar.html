@@ -1,0 +1,48 @@
+{% load static %}
+<nav>
+    <div class="logo">
+        <a href="{% url 'core:home' %}">
+          <img src="{% static '/images/Icons/Seven Flags Logo 1.svg' %}" alt="SevenFlags Logo" class="logo-image">
+
+        </a>
+    </div>
+
+    <ul class="nav_list">
+        <li><a href="{% url 'core:home' %}">Home</a></li>
+        <li><a href="{% url 'core:properties' %}">Properties</a></li>
+        <li><a href="{% url 'core:invest' %}">Invest</a></li>
+        <li><a href="{% url 'core:blog' %}">Blog</a></li>
+        <li><a href="{% url 'core:about' %}">Overview</a></li>
+        <li><a href="{% url 'core:contact' %}">Contact</a></li>
+        <li>
+        <form method="get" action="{% url 'core:set_currency' %}" class="currency-mobile-form" style="display: none;">
+            <label for="currency-selector" class="currency-label">Currency:</label>
+            <select name="currency" id="currency-selector" onchange="this.form.submit()">
+              {% for code in available_currencies %}
+                <option value="{{ code }}" {% if code == request.COOKIES.currency %}selected{% endif %}>
+                  {{ code }}
+                </option>
+              {% endfor %}  
+            </select>
+        </form>
+        </li>
+    </ul>
+    <form method="get" action="{% url 'core:set_currency' %}" class="exchange-form">
+        <label for="currency-selector" class="currency-label">Currency:</label>
+        <select name="currency" id="currency-selector" onchange="this.form.submit()">
+          {% for code in available_currencies %}
+            <option value="{{ code }}" {% if code == request.COOKIES.currency %}selected{% endif %}>
+              {{ code }}
+            </option>
+          {% endfor %}
+        </select>
+    </form>
+      
+      
+    <div class="hamburger" id="hamburger" style="display: none;">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+      
+</nav>
