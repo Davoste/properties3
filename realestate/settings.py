@@ -37,7 +37,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500", "https://23de-41-90-178-17.ngrok-free.app"
+    "http://127.0.0.1:5500", "https://23de-41-90-178-17.ngrok-free.app","https://properties3.onrender.com"
 ]
 
 
